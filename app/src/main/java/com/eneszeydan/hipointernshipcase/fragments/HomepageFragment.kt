@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatActivity
+
 
 import androidx.fragment.app.viewModels
 import com.eneszeydan.hipointernshipcase.MainActivity
+import com.eneszeydan.hipointernshipcase.R
 import com.eneszeydan.hipointernshipcase.adapter.MembersAdapter
 import com.eneszeydan.hipointernshipcase.databinding.FragmentHomepageBinding
 import com.eneszeydan.hipointernshipcase.viewmodels.HomepageFragmentViewModel
@@ -27,8 +28,10 @@ class HomepageFragment : Fragment() {
     ): View? {
         binding = FragmentHomepageBinding.inflate(inflater, container, false)
 
-        (activity as MainActivity).supportActionBar?.title = "Members"
 
+        binding.toolbar.apply {
+            title = "Members"
+        }
 
         viewModel.getAllMembers(requireContext())
         viewModel.membersList.observe(viewLifecycleOwner) { membersList ->

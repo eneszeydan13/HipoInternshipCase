@@ -1,7 +1,6 @@
 package com.eneszeydan.hipointernshipcase.viewmodels
 
 import android.content.Context
-import android.content.res.AssetManager
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,10 +9,7 @@ import com.eneszeydan.hipointernshipcase.models.HipoResponse
 import com.eneszeydan.hipointernshipcase.models.Members
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.File
-import java.io.FileWriter
 import java.io.IOException
-import java.io.PrintWriter
 
 class HomepageFragmentViewModel : ViewModel() {
     //I use livedata so the UI can react to changes in the data
@@ -37,7 +33,7 @@ class HomepageFragmentViewModel : ViewModel() {
                 .bufferedReader()
                 .use { it.readText() }
         } catch (ioe: IOException) {
-            Log.e("Exception", ioe.localizedMessage)
+            Log.e("Exception", ioe.localizedMessage as String)
         }
 
         val type = object : TypeToken<HipoResponse>() {}.type

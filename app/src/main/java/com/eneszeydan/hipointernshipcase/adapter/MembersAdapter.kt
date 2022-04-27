@@ -8,7 +8,7 @@ import com.eneszeydan.hipointernshipcase.databinding.RowDesignBinding
 import com.eneszeydan.hipointernshipcase.models.Members
 
 class MembersAdapter(
-    var mContext: Context,
+    var context: Context,
     var membersList: List<Members>
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 
@@ -16,8 +16,7 @@ class MembersAdapter(
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder {
-        val layoutInflater = LayoutInflater.from(mContext)
-
+        val layoutInflater = LayoutInflater.from(context)
         val design = RowDesignBinding.inflate(layoutInflater, parent, false)
         return MembersViewHolder(design)
     }
