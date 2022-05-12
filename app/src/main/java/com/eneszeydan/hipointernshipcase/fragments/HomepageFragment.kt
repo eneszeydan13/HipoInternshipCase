@@ -6,11 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-
-
 import androidx.fragment.app.viewModels
-import com.eneszeydan.hipointernshipcase.MainActivity
-import com.eneszeydan.hipointernshipcase.R
 import com.eneszeydan.hipointernshipcase.adapter.MembersAdapter
 import com.eneszeydan.hipointernshipcase.databinding.FragmentHomepageBinding
 import com.eneszeydan.hipointernshipcase.viewmodels.HomepageFragmentViewModel
@@ -29,13 +25,9 @@ class HomepageFragment : Fragment() {
         binding = FragmentHomepageBinding.inflate(inflater, container, false)
 
 
-        binding.toolbar.apply {
-            title = "Members"
-        }
-
         viewModel.getAllMembers(requireContext())
         viewModel.membersList.observe(viewLifecycleOwner) { membersList ->
-            adapter = MembersAdapter(requireContext(), membersList)
+            adapter = MembersAdapter(membersList)
             binding.rv.adapter = adapter
         }
 
@@ -43,15 +35,16 @@ class HomepageFragment : Fragment() {
             viewModel.addNewMember()
         }
 
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                adapter = MembersAdapter(requireContext(), viewModel.searchMembers(query))
+                adapter = MembersAdapter(viewModel.searchMembers(query))
                 binding.rv.adapter = adapter
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                adapter = MembersAdapter(requireContext(), viewModel.searchMembers(newText))
+                adapter = MembersAdapter( viewModel.searchMembers(newText))
                 binding.rv.adapter = adapter
                 return true
             }
